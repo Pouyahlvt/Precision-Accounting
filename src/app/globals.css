@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+::selection {
+  appearance: none;
+  background-color: #eee9dc ;
+  color: black ;
+}
+
+@theme {
+  --color-sky-blue: #81c1dc;
+  --color-lnk-black: #051124;
+  --color-dusk-blue: #31496b;
+  --color-soft-line: #eee9dc;
+  --color-platinum: #f0f0f0;
+  --color-real-blue: #0015ff;
+  --color-green-blue: #00ccff;
+  --color-strong-blue: #020141;
+  --color-light-blue: #9dd5ff;
+  --font-ubuntu: var(--font-ubuntu);
+  --font-source-sans: var(--font-source-sans);
+  --font-oswald: var(--font-oswald);
+  --font-lato: var(--font-lato);
+  --font-poppins: var(--font-poppins);
+}
