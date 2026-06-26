@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Ubuntu, Source_Sans_3, Lato, Oswald, Poppins } from "next/font/google";
-import Providers from "./componenets/provider";
+import Providers from "../componenets/provider";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -35,20 +35,18 @@ const poppins = Poppins({
 export const metadata = {
   title: {
     default: "Precision Accounting",
-    template: "%s | Precision Accounting" 
-  }
+    template: "%s | Precision Accounting",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
-     title="Precision Accounting"
+      title="Precision Accounting"
       lang="en"
       className={`${ubuntu.variable} ${sourceSans.variable} ${oswald.variable} ${lato.variable} ${poppins.variable}`}>
       <body>
-        <Providers>
-          { children }
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
