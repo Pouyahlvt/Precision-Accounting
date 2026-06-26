@@ -2,11 +2,13 @@
 
 ::selection {
   appearance: none;
-  background-color: #eee9dc ;
-  color: black ;
+  background-color: #eee9dc;
+  color: black;
 }
 
 @theme {
+  --color-cotton: #edebde;
+  --color-noir-black: #1b1716;
   --color-sky-blue: #81c1dc;
   --color-lnk-black: #051124;
   --color-dusk-blue: #31496b;
