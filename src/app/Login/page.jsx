@@ -9,7 +9,23 @@ const EnterPage = () => {
   const loginRef = useRef(null);
   const signinRef = useRef(null);
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (!signinRef.current || !loginRef.current) return;
+
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
+    });
+
+    if (logIn) {
+      tl.to(signinRef.current, { x: "100%" }).to(loginRef.current, {
+        x: 0,
+      });
+    } else {
+      tl.to(loginRef.current, { x: "100%" }).to(signinRef.current, {
+        x: 0,
+      });
+    }
+  }, [logIn]);
 
   return (
     <div className="overflow-hidden">
@@ -65,12 +81,12 @@ const EnterPage = () => {
           </p>
         </div>
         <div
-          ref={loginRef}
-          className="absolute right-0 w-[45%] h-screen rounded-l-4xl bg-cotton ">
+          ref={signinRef}
+          className="absolute right-0 w-[45%] h-screen rounded-l-4xl bg-cotton translate-x-full">
           <h1
             className="w-full mt-6 flex justify-center text-4xl font-poppins 
           tracking-tighter font-semibold text-real-blue">
-            Log In
+            Sign In
           </h1>
           <div className="flex w-full justify-center mt-20">
             <input
