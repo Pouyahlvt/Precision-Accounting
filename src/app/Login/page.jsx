@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { WordByWord } from "@/src/componenets/tesxtAnimations";
 
 const EnterPage = () => {
   const [logIn, setLogIn] = useState(true);
@@ -30,6 +31,21 @@ const EnterPage = () => {
   return (
     <div className="overflow-hidden">
       <div className="relative w-full h-screen bg-noir-black">
+        <div className="absolute top-15 w-[55%] flex justify-center">
+          <WordByWord
+            text={"Welcome"}
+            state={!logIn}
+            className={"text-cotton text-6xl font-ubuntu font-bold"}
+          />
+        </div>
+        <div className="absolute top-15 w-[55%] flex justify-center">
+          <WordByWord
+            text={"Welcome 2"}
+            state={logIn}
+            className={"text-cotton text-6xl font-ubuntu font-bold"}
+          />
+        </div>
+
         <div
           ref={loginRef}
           className="absolute right-0 w-[45%] h-screen rounded-l-4xl bg-cotton ">
@@ -56,8 +72,12 @@ const EnterPage = () => {
           </div>
           <div className="flex w-full justify-center mt-8">
             <button
-              onMouseEnter={() => setHover("login-button")}
-              onMouseLeave={() => setHover(null)}
+              onMouseEnter={(e) => {
+                (e.preventDefault(), setHover("login-button"));
+              }}
+              onMouseLeave={(e) => {
+                (e.preventDefault(), setHover(null));
+              }}
               className="border-[0.1rem] w-[80%] cursor-pointer border-noir-black rounded-xl px-4 py-2 
               font-poppins font-semibold text-2xl text-noir-black tracking-tighter active:scale-98 
               transition-all duration-200 ease-in-out">
@@ -76,7 +96,7 @@ const EnterPage = () => {
               onClick={() => setLogIn(!logIn)}
               className="text-real-blue cursor-pointer ml-1">
               {" "}
-              Sign In
+              Sign up
             </span>
           </p>
         </div>
@@ -86,7 +106,7 @@ const EnterPage = () => {
           <h1
             className="w-full mt-6 flex justify-center text-4xl font-poppins 
           tracking-tighter font-semibold text-real-blue">
-            Sign In
+            Sign up
           </h1>
           <div className="flex w-full justify-center mt-20">
             <input
@@ -98,7 +118,7 @@ const EnterPage = () => {
           </div>
           <div className="flex w-full justify-center mt-8">
             <input
-              placeholder="Password "
+              placeholder="Email address "
               type="text"
               className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
               font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
@@ -106,7 +126,7 @@ const EnterPage = () => {
           </div>
           <div className="flex w-full justify-center mt-8">
             <input
-              placeholder="confirm Password "
+              placeholder="Password "
               type="text"
               className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
               font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
@@ -137,12 +157,12 @@ const EnterPage = () => {
           <p
             className="text-[0.8rem] text-noir-black font-poppins tracking-tight 
           absolute bottom-2 w-full flex justify-center cursor-default">
-            {`don't have an accoount ? `}
+            {`have an accoount ? `}
             <span
               onClick={() => setLogIn(!logIn)}
               className="text-real-blue cursor-pointer ml-1">
               {" "}
-              log in
+              Log in
             </span>
           </p>
         </div>
