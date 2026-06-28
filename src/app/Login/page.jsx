@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Eye, EyeOff } from "lucide-react";
@@ -39,6 +40,51 @@ const EnterPage = () => {
           className={"text-cotton text-6xl font-ubuntu font-bold"}
           divClass={` top-15 w-[55%] flex justify-center `}
         />
+        <div className="absolute flex items-end justify-center bottom-0 w-[55%] h-[75vh] select-none">
+          <div className="w-[70%] h-full">
+            <img src="/Images/phone.png" alt="phone" className="" />
+          </div>
+          <div className="absolute w-36 h-74 mb-23 rounded-2xl bg-transparent z-10 cursor-help">
+            <h1 className="text-xs text-center mt-8 font-ubuntu tracking-tight">
+              precision Accounting
+            </h1>
+            <div className="flex justify-center items-end  w-[85%] h-[30%] rounded-xl bg-dusk-blue mt-3 mx-auto">
+              <div className="w-[10%] h-10 rounded-t-xs bg-green-blue mx-2 transition-all duration-300 ease-in-out hover:h-15"></div>
+              <div className="w-[10%] h-17 rounded-t-xs bg-sky-blue  mx-2  transition-all duration-300 ease-in-out hover:h-10"></div>
+              <div className="w-[10%] h-15 rounded-t-xs bg-light-blue mx-2  transition-all duration-300 ease-in-out hover:h-12"></div>
+              <div className="w-[10%] h-20 rounded-t-xs bg-strong-blue mx-2  transition-all duration-300 ease-in-out hover:h-8"></div>
+            </div>
+            <div className="w-[85%] h-[44%] rounded-xl bg-strong-blue mt-2 mx-auto pt-1">
+              <div className="flex text-xs font-ubuntu font-thin tracking-tight text-cotton ml-2">
+                Ronika :{" "}
+                <span className="ml-2">
+                  {
+                    <WordByWord
+                      textOne={"$1102.5"}
+                      textTwo={"$~0"}
+                      state={logIn}
+                    />
+                  }
+                </span>
+              </div>
+              <div className="w-[90%] h-[10%] border-b-[0.04rem] border-cotton mt-3 flex items-center py-2  mx-auto">
+                <p className="text-[0.7rem] text-red-600 ml-1 mb-2 transition-all duration-300 aspect-auto hover:scale-110">
+                  you lost money -$
+                </p>
+              </div>
+              <div className="w-[90%] h-[10%] border-b-[0.04rem] border-cotton mt-2 flex items-center py-2  mx-auto">
+                <p className="text-[0.7rem] text-green-600 ml-1 mb-2 transition-all duration-300 aspect-auto hover:scale-110">
+                  you get money +$
+                </p>
+              </div>
+              <div className="w-[90%] h-[10%] border-b-[0.04rem] border-cotton mt-2 flex items-center py-2  mx-auto ">
+                <p className="text-[0.7rem] text-cotton ml-1 mb-2 transition-all duration-300 aspect-auto hover:scale-110">
+                  Nothing happend {`:(`}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div
           ref={loginRef}

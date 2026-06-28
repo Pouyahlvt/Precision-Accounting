@@ -62,7 +62,7 @@ export const WordByWord = ({
         {wordsOne.map((word, i) => (
           <p
             key={`word-${i}`}
-            className={`wordOne  ${word === "~" ? "text-transparent" : "-ml-1"}`}>
+            className={`wordOne  ${word === "~" ? "text-transparent" : ""}`}>
             {word}
           </p>
         ))}
@@ -72,7 +72,7 @@ export const WordByWord = ({
           {wordsTwo.map((word, i) => (
             <p
               key={`wordT-${i}`}
-              className={`wordTwo opacity-0 ${word === "~" ? "text-transparent" : "-ml-1"}`}>
+              className={`wordTwo opacity-0 ${word === "~" ? "text-transparent" : ""}`}>
               {word}
             </p>
           ))}
