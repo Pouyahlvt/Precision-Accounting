@@ -1,5 +1,6 @@
 "use client";
 
+import { Eye, EyeOff } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { WordByWord } from "@/src/componenets/tesxtAnimations";
@@ -47,24 +48,9 @@ const EnterPage = () => {
           tracking-tighter font-semibold text-real-blue">
             Log In
           </h1>
-          <div className="flex w-full justify-center mt-20">
-            <input
-              id="UsernameLogIn"
-              placeholder="Username"
-              type="text"
-              className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
-              font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
-            />
-          </div>
-          <div className="flex w-full justify-center mt-8">
-            <input
-              placeholder="Password "
-              type="text"
-              className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
-              font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
-            />
-          </div>
-          <div className="flex w-full justify-center mt-8">
+          {<InputMaker label={"Username or Email"} divClass={"mt-25"} />}
+          {<InputMaker label={"Password"} type="password" divClass={"mt-4"} />}
+          <div className="flex w-full justify-center mt-6">
             <button
               onMouseEnter={(e) => {
                 (e.preventDefault(), setHover("login-button"));
@@ -72,8 +58,8 @@ const EnterPage = () => {
               onMouseLeave={(e) => {
                 (e.preventDefault(), setHover(null));
               }}
-              className="border-[0.1rem] w-[80%] cursor-pointer border-noir-black rounded-xl px-4 py-2 
-              font-poppins font-semibold text-2xl text-noir-black tracking-tighter active:scale-98 
+              className="border-[0.1rem]  w-[80%] cursor-pointer border-noir-black rounded-2xl px-4 py-2 
+              font-poppins font-semibold text-3xl text-noir-black tracking-tighter active:scale-98 
               transition-all duration-200 ease-in-out">
               Log In
               <span
@@ -102,44 +88,16 @@ const EnterPage = () => {
           tracking-tighter font-semibold text-real-blue">
             Sign up
           </h1>
-          <div className="flex w-full justify-center mt-20">
-            <input
-              placeholder="Username "
-              type="text"
-              className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
-              font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
-            />
-          </div>
-          <div className="flex w-full justify-center mt-8">
-            <input
-              placeholder="Email address "
-              type="text"
-              className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
-              font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
-            />
-          </div>
-          <div className="flex w-full justify-center mt-8">
-            <input
-              placeholder="Password "
-              type="text"
-              className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
-              font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
-            />
-          </div>
-          <div className="flex w-full justify-center mt-8">
-            <input
-              placeholder="company name"
-              type="text"
-              className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
-              font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
-            />
-          </div>
-          <div className="flex w-full justify-center mt-8">
+          {<InputMaker label={"Email"} divClass={"mt-15"} />}
+          {<InputMaker label={"Username"} />}
+          {<InputMaker label={"Password"} type="password" />}
+          {<InputMaker label={"Company Name"} />}
+          <div className="flex w-full justify-center mt-6">
             <button
               onMouseEnter={() => setHover("login-button")}
               onMouseLeave={() => setHover(null)}
-              className="border-[0.1rem] w-[80%] cursor-pointer border-noir-black rounded-xl px-4 py-2 
-              font-poppins font-semibold text-2xl text-noir-black tracking-tighter active:scale-98 
+              className="border-[0.1rem] w-[80%] cursor-pointer border-noir-black rounded-2xl px-4 py-2 
+              font-poppins font-semibold text-3xl text-noir-black tracking-tighter active:scale-98 
               transition-all duration-200 ease-in-out">
               Sign up
               <span
@@ -154,12 +112,51 @@ const EnterPage = () => {
             {`have an accoount ? `}
             <span
               onClick={() => setLogIn(!logIn)}
-              className="text-real-blue cursor-pointer ml-1">
+              className="text-real-blue cursor-pointer ml-1 ">
               {" "}
               Log in
             </span>
           </p>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const InputMaker = ({ label, type = "text", className, divClass = "mt-2" }) => {
+  const [state, setState] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const handleBlur = (e) => {
+    if (e.target.value === "") setState(false);
+  };
+  return (
+    <div
+      id={`${label}`}
+      className={`${divClass} relative  flex w-full justify-center pt-8`}>
+      <p
+        className={`absolute font-poppins font-thin text-noir-black tracking-tight text-xl -z-1
+         ${state ? "top-0 left-18" : "top-10.5 left-20"} transition-all duration-500 ease-out`}>
+        {label}
+      </p>
+      <input
+        onFocus={() => setState(true)}
+        onBlur={handleBlur}
+        type={visible ? "text" : type}
+        className={`${className} w-full mx-15 py-2 font border-[0.1rem] border-noir-black rounded-2xl px-4
+              font-poppins text-noir-black tracking-tight text-xl outline-0 focus:shadow-xl/20 
+               transition-all duration-500 ease-out`}
+      />
+
+      <div
+        onClick={() => setVisible(!visible)}
+        className={`${type.toUpperCase() !== "PASSWORD" ? "hidden" : ""}`}>
+        <Eye
+          className={`absolute right-18 mt-3 cursor-pointer transition-all duration-300 ease-in-out ${visible ? "" : "opacity-0 scale-0"}`}
+        />
+        <EyeOff
+          className={`absolute right-18 mt-3 cursor-pointer transition-all duration-300 ease-in-out ${!visible ? "" : "opacity-0 scale-0"}`}
+        />
       </div>
     </div>
   );
