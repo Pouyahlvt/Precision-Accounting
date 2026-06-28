@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 export const WordByWord = ({ text, className, state }) => {
   const container = useRef();
-  const words = text.split("");
+  const words = useMemo(() => text.split(""), [text]);
 
   useGSAP(() => {});
 
@@ -14,48 +14,45 @@ export const WordByWord = ({ text, className, state }) => {
     if (state) {
       const tl = gsap.timeline();
 
-      words.forEach((_, i) => {
-        tl.to(
-          `.word-${i + 1}`,
-          {
-            opacity: 0,
-            y: 5,
-            duration: 0.15,
-            ease: "power3.in",
-          },
-          "-=0.1",
-        );
-
-        tl.set(`.word-${i + 1}`, { y: -5, opacity: 0 });
-      });
+      tl.to(
+        `.word`,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.15,
+          ease: "power3.in",
+          stagger: 0.05,
+        },
+        { scope: container },
+      );
     } else {
-      const tl = gsap.timeline({ delay: 0.5 });
+      const tl = gsap.timeline();
 
-      words.forEach((_, i) => {
-        tl.to(
-          `.word-${i + 1}`,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.15,
-            ease: "power3.out",
-          },
-          "-=0.1",
-        );
-      });
+      tl.to(
+        `.word`,
+        {
+          opacity: 0,
+          y: 5,
+          duration: 0.15,
+          ease: "power3.in",
+          stagger: 0.05,
+        },
+        { scope: container },
+      );
+
+      tl.set(`.word`, { y: -5, opacity: 0 });
     }
   }, [state, words]);
 
   return (
     <div ref={container} className={`flex ${className}`}>
-      {state &&
-        words.map((word, i) => (
-          <p
-            key={i}
-            className={`word-${i + 1} opacity-0 -translate-y-5 ${word === ":" ? "ml-6 mr-2" : "-ml-1"}`}>
-            {word}
-          </p>
-        ))}
+      {words.map((word, i) => (
+        <p
+          key={i}
+          className={`word opacity-0 -translate-y-10 ${word === ":" ? "ml-6 mr-2" : "-ml-1"}`}>
+          {word}
+        </p>
+      ))}
     </div>
   );
 };
