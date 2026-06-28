@@ -2,57 +2,82 @@
 
 import { useRef, useEffect, useMemo } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 
-export const WordByWord = ({ text, className, state }) => {
+export const WordByWord = ({
+  textOne,
+  textTwo,
+  className,
+  state,
+  divClass,
+}) => {
   const container = useRef();
-  const words = useMemo(() => text.split(""), [text]);
-
-  useGSAP(() => {});
+  const wordsOne = useMemo(() => textOne.split(""), [textOne]);
+  const wordsTwo = useMemo(() => textTwo.split(""), [textTwo]);
 
   useEffect(() => {
     if (state) {
       const tl = gsap.timeline();
 
-      tl.to(
-        `.word`,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.15,
-          ease: "power3.in",
-          stagger: 0.05,
-        },
-        { scope: container },
-      );
+      tl.to(".wordTwo", {
+        opacity: 0,
+        y: 5,
+        duration: 0.15,
+        ease: "power3.in",
+        stagger: 0.05,
+      })
+        .fromTo(
+          ".wordOne",
+          { opacity: 0, y: -10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.15,
+            ease: "power3.in",
+            stagger: 0.05,
+          },
+        )
+        .to(".wordTwo", { y: -10 });
     } else {
       const tl = gsap.timeline();
 
-      tl.to(
-        `.word`,
-        {
-          opacity: 0,
-          y: 5,
-          duration: 0.15,
-          ease: "power3.in",
-          stagger: 0.05,
-        },
-        { scope: container },
-      );
-
-      tl.set(`.word`, { y: -5, opacity: 0 });
+      tl.to(".wordOne", {
+        opacity: 0,
+        y: 5,
+        duration: 0.15,
+        ease: "power3.in",
+        stagger: 0.05,
+      }).to(".wordTwo", {
+        opacity: 1,
+        y: 0,
+        duration: 0.15,
+        ease: "power3.in",
+        stagger: 0.05,
+      });
     }
-  }, [state, words]);
+  }, [state, wordsOne, wordsTwo]);
 
   return (
-    <div ref={container} className={`flex ${className}`}>
-      {words.map((word, i) => (
-        <p
-          key={i}
-          className={`word opacity-0 -translate-y-10 ${word === ":" ? "ml-6 mr-2" : "-ml-1"}`}>
-          {word}
-        </p>
-      ))}
+    <div ref={container} className={`relative flex ${divClass}`}>
+      <div className={`absolute flex ${className}`}>
+        {wordsOne.map((word, i) => (
+          <p
+            key={`word-${i}`}
+            className={`wordOne  ${word === "~" ? "text-transparent" : "-ml-1"}`}>
+            {word}
+          </p>
+        ))}
+      </div>
+      {wordsTwo && (
+        <div className={`absolute flex ${className}`}>
+          {wordsTwo.map((word, i) => (
+            <p
+              key={`wordT-${i}`}
+              className={`wordTwo opacity-0 ${word === "~" ? "text-transparent" : "-ml-1"}`}>
+              {word}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

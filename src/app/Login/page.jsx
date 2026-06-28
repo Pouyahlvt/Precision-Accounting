@@ -31,20 +31,13 @@ const EnterPage = () => {
   return (
     <div className="overflow-hidden">
       <div className="relative w-full h-screen bg-noir-black">
-        <div className={`absolute top-15 w-[55%] flex justify-center `}>
-          <WordByWord
-            text={"Welcome"}
-            state={logIn}
-            className={"text-cotton text-6xl font-ubuntu font-bold"}
-          />
-        </div>
-        {/* <div className={`absolute top-15 w-[55%] flex justify-center `}>
-          <WordByWord
-            text={"Welcome"}
-            state={logIn}
-            className={"text-cotton text-6xl font-ubuntu font-bold"}
-          />
-        </div> */}
+        <WordByWord
+          textOne={"Hi~again~:)"}
+          textTwo={"Wellcome~:)"}
+          state={logIn}
+          className={"text-cotton text-6xl font-ubuntu font-bold"}
+          divClass={` top-15 w-[55%] flex justify-center `}
+        />
 
         <div
           ref={loginRef}
@@ -57,7 +50,7 @@ const EnterPage = () => {
           <div className="flex w-full justify-center mt-20">
             <input
               id="UsernameLogIn"
-              placeholder="Username "
+              placeholder="Username"
               type="text"
               className="border-[0.1rem] w-[80%] h-10 border-noir-black rounded-xl px-4 py-2 
               font-poppins text-noir-black tracking-tight outline-0 focus:border-[0.2rem] transition-all duration-0 ease-in-out"
